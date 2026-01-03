@@ -127,16 +127,26 @@ previewButton.addEventListener("click", () => {
   }
 
   previewBody.innerHTML = buildResearch(data);
-  previewDialog.showModal();
+  if (typeof previewDialog.showModal !== "function") {
+    previewDialog.classList.add("open");
+  } else {
+    previewDialog.showModal();
+  }
 });
 
 closePreview.addEventListener("click", () => {
-  previewDialog.close();
+  if (typeof previewDialog.close === "function") {
+    previewDialog.close();
+  }
+  previewDialog.classList.remove("open");
 });
 
 previewDialog.addEventListener("click", (event) => {
   if (event.target === previewDialog) {
-    previewDialog.close();
+    if (typeof previewDialog.close === "function") {
+      previewDialog.close();
+    }
+    previewDialog.classList.remove("open");
   }
 });
 
