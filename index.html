@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Islamic Research Writer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>الباحث الشرعي المعتمد على الذكاء الاصطناعي</h1>
+        <p>
+          أداة بحثية لتوليد مسودات منهجية للبحوث الشرعية مع الحفاظ على الضوابط العلمية.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>إعداد البحث</h2>
+        <form id="research-form" class="form-grid">
+          <label>
+            موضوع البحث أو السؤال الشرعي
+            <input
+              type="text"
+              id="topic"
+              placeholder="مثال: ضوابط الاجتهاد في النوازل المعاصرة"
+              required
+            />
+          </label>
+
+          <label>
+            المستوى العلمي
+            <select id="level" required>
+              <option value="بكالوريوس">بكالوريوس</option>
+              <option value="ماجستير">ماجستير</option>
+              <option value="دكتوراه">دكتوراه</option>
+            </select>
+          </label>
+
+          <label>
+            منهجية الاستدلال
+            <select id="method" required>
+              <option value="منهج أهل السنة والجماعة">منهج أهل السنة والجماعة</option>
+              <option value="المنهج المقارن">المنهج المقارن</option>
+              <option value="المنهج الأصولي">المنهج الأصولي</option>
+            </select>
+          </label>
+
+          <label>
+            الهدف من البحث
+            <textarea
+              id="goal"
+              rows="3"
+              placeholder="مثال: بيان الأصول الشرعية المنظمة للاجتهاد في القضايا المستجدة"
+              required
+            ></textarea>
+          </label>
+
+          <div class="button-row">
+            <button type="submit" class="primary">توليد مسودة البحث</button>
+            <button
+              id="preview"
+              type="button"
+              class="secondary"
+              data-testid="preview-btn"
+            >
+              معاينة البحث
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <div class="card-header">
+          <h2>المخرجات البحثية</h2>
+          <div class="actions">
+            <button id="download-doc" class="secondary" type="button">
+              تحميل Word
+            </button>
+            <button id="download-pdf" class="secondary" type="button">
+              تصدير PDF
+            </button>
+          </div>
+        </div>
+        <article id="output" class="output">
+          <p class="muted">املأ النموذج أعلاه لتوليد مسودة بحث شرعي منظمة.</p>
+        </article>
+      </section>
+
+      <dialog id="preview-dialog" data-testid="preview-modal">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <h3>معاينة البحث</h3>
+            <button id="close-preview" class="text-button" type="button">
+              إغلاق
+            </button>
+          </div>
+          <div id="preview-body" class="output"></div>
+        </div>
+      </dialog>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          تنبيه: هذه المنصّة أداة مساعدة للبحث العلمي ولا تغني عن الرجوع إلى العلماء
+          المختصين.
+        </p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
