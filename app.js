@@ -7,6 +7,21 @@ const previewDialog = document.getElementById("preview-dialog");
 const previewBody = document.getElementById("preview-body");
 const closePreview = document.getElementById("close-preview");
 
+const required = [
+  form,
+  output,
+  downloadDoc,
+  downloadPdf,
+  previewButton,
+  previewDialog,
+  previewBody,
+  closePreview,
+];
+
+if (required.some((el) => !el)) {
+  console.error("Missing required DOM elements");
+}
+
 const sectionTitles = {
   introduction: "المقدمة",
   evidence: "الأدلة من القرآن والسنة",
