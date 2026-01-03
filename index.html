@@ -60,7 +60,14 @@
 
           <div class="button-row">
             <button type="submit" class="primary">توليد مسودة البحث</button>
-            <button id="preview" type="button" class="secondary">معاينة البحث</button>
+            <button
+              id="preview"
+              type="button"
+              class="secondary"
+              data-testid="preview-btn"
+            >
+              معاينة البحث
+            </button>
           </div>
         </form>
       </section>
@@ -82,7 +89,7 @@
         </article>
       </section>
 
-      <dialog id="preview-dialog">
+      <dialog id="preview-dialog" data-testid="preview-modal">
         <div class="dialog-content">
           <div class="dialog-header">
             <h3>معاينة البحث</h3>
