@@ -58,7 +58,10 @@
             ></textarea>
           </label>
 
-          <button type="submit" class="primary">توليد مسودة البحث</button>
+          <div class="button-row">
+            <button type="submit" class="primary">توليد مسودة البحث</button>
+            <button id="preview" type="button" class="secondary">معاينة البحث</button>
+          </div>
         </form>
       </section>
 
@@ -78,6 +81,18 @@
           <p class="muted">املأ النموذج أعلاه لتوليد مسودة بحث شرعي منظمة.</p>
         </article>
       </section>
+
+      <dialog id="preview-dialog">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <h3>معاينة البحث</h3>
+            <button id="close-preview" class="text-button" type="button">
+              إغلاق
+            </button>
+          </div>
+          <div id="preview-body" class="output"></div>
+        </div>
+      </dialog>
     </main>
 
     <footer class="site-footer">

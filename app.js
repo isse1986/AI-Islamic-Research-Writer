@@ -2,6 +2,10 @@ const form = document.getElementById("research-form");
 const output = document.getElementById("output");
 const downloadDoc = document.getElementById("download-doc");
 const downloadPdf = document.getElementById("download-pdf");
+const previewButton = document.getElementById("preview");
+const previewDialog = document.getElementById("preview-dialog");
+const previewBody = document.getElementById("preview-body");
+const closePreview = document.getElementById("close-preview");
 
 const sectionTitles = {
   introduction: "المقدمة",
@@ -65,20 +69,60 @@ function buildResearch({ topic, level, method, goal }) {
   `;
 }
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
+function getFormData() {
   const topic = sanitizeText(document.getElementById("topic").value);
   const level = document.getElementById("level").value;
   const method = document.getElementById("method").value;
   const goal = sanitizeText(document.getElementById("goal").value);
 
   if (!topic || !goal) {
-    output.innerHTML = `<p class="muted">يرجى إدخال موضوع البحث والهدف المطلوب.</p>`;
+    return null;
+  }
+
+  return { topic, level, method, goal };
+}
+
+function renderOutput(data) {
+  output.innerHTML = buildResearch(data);
+}
+
+function showValidationMessage() {
+  const message = `<p class="muted">يرجى إدخال موضوع البحث والهدف المطلوب.</p>`;
+  output.innerHTML = message;
+  previewBody.innerHTML = message;
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = getFormData();
+  if (!data) {
+    showValidationMessage();
     return;
   }
 
-  output.innerHTML = buildResearch({ topic, level, method, goal });
+  renderOutput(data);
+});
+
+previewButton.addEventListener("click", () => {
+  const data = getFormData();
+  if (!data) {
+    showValidationMessage();
+    return;
+  }
+
+  previewBody.innerHTML = buildResearch(data);
+  previewDialog.showModal();
+});
+
+closePreview.addEventListener("click", () => {
+  previewDialog.close();
+});
+
+previewDialog.addEventListener("click", (event) => {
+  if (event.target === previewDialog) {
+    previewDialog.close();
+  }
 });
 
 function downloadAsDoc() {
